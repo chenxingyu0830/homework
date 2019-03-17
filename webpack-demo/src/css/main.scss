@@ -1,0 +1,65 @@
+body {
+  background: #EFEFEF;
+  color: #3d4451;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+hr {
+  height: 0;
+  border: none;
+  border-top: 1px solid #DEDEDE;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* 上面不要看 */
+[data-x].offset {
+  transform: translateY(100px);
+}
+
+[data-x] {
+  transform: translateY(0);
+  transition: all 0.5s;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.topNavBar {
+  padding: 20px 0;
+  position: fixed;
+  width: 100%;
+}
