@@ -18,3 +18,4 @@
 
 > 2. 过滤器，指令和事件
 > 3. 计算属性Computed
+> 4. v-bind以及class和style的绑定

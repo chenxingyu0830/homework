@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>绑定内联样式</title>
+
+</head>
+<body>
+
+绑定内联样式，键代表style的属性，值代表属性对应的值<br>
+切记: vue中只要有大写字母，都会转化为-加小写<br>
+<div id="app">
+  <div v-bind:style="{'color':color, 'fontSize':fontSize +'px'}">效果</div>
+</div>
+
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data:{
+      color: 'red',
+      fontSize: 16
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>数组语法和对象语法混用</title>
+  <style>
+    .active{
+      background-color: red;
+    }
+    .error{
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  数组和对象混用，第一个成员是对象,第二个成员是数组成员 <br>
+  <div :class="[{active: isActive}, errorClass]">数组和对象混用</div>
+</div>
+
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data:{
+      isActive: true,
+      activeClass: true,
+      errorClass: 'error'
+    }
+  })
+</script>
+</body>
+</html>
