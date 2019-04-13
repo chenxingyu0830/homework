@@ -16,5 +16,5 @@
 - vue-demo [预览链接](http://smallyu.top/homework/vue-demo)
 这个项目记录了Vue基础知识的学习过程，同时也是对官方文档的一个回顾。
 
-> 1. 过滤器，指令和事件
-> 2. 计算属性Computed
+> 2. 过滤器，指令和事件
+> 3. 计算属性Computed
