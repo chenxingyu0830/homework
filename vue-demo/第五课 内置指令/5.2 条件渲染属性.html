@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>条件渲染属性</title>
+  <style>
+    [v-clock] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  v-if后接的是等号，等号后的内容必须是布尔值  <br>
+  v-if基本用法: <br>
+  <p v-if="6<3">{{ apple }}</p>
+  <p v-else>{{ banana }}</p>
+  <hr>
+  v-if的实例用法: 对不想让其复用的标签或者元素，加入key即可
+  需求: 点击按钮，实现用户名输入框和密码输入框的切换
+  <div v-if="type === 'name'">
+    用户名: <input type="text" placeholder="请输入用户名" key="name">
+  </div>
+  <div v-else>
+      密码: <input type="text" placeholder="请输入密码" key="password">
+  </div>
+  <button v-on:click="toggleType">切换按钮</button>
+  <hr>
+  v-show用法: 显现与否取决于布尔值
+  <p v-show="9>5">我被渲染</p>
+  <hr>
+  v-for的用法:  <br>
+  (1) 遍历多个对象: <br>
+  学好vueJS的方法是:
+  <ul>
+    <li v-for="vueMethod in vueMethods">{{vueMethod.name}}</li>
+  </ul>
+  <hr>
+  带索引的写法: 
+  <ul>
+    <li v-for="(vueMethod,index) in vueMethods">{{index}}-{{vueMethod.name}}</li>
+  </ul>
+  <hr>
+  (2) 遍历一个对象的多个属性:
+  <ul>
+    <li v-for="(value,key,index) in fruits">{{value}}-键是{{key}}-{{index}}-{{fruits}}</li>
+  </ul>
+
+  
+</div>
+
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      apple: '苹果',
+      banana: '香蕉',
+      type: 'name',
+
+      vueMethods: [
+        {name: '多思考'},
+        {name: '多练习'},
+        {name: '听讲课'}
+      ],
+      fruits: {
+        apple: '苹果',
+        banana: '香蕉',
+        orange: '橘子'
+      }
+    },
+    methods: {
+      toggleType: function(){
+        this.type = (this.type === 'name' ? 'password': 'name')
+      }
+    }
+  })
+</script>
+</body>
+</html>

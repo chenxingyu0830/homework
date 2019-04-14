@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数组更新</title>
+</head>
+<body>
+<div id="app">
+  <div v-for="study in arr">{{study}}</div>
+  返回含有oo的项: {{ matchOO }}
+</div>
+
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data:{
+      arr:['book','pen','pencil']
+    },
+    computed: {
+      matchOO: function(){
+        return this.arr.filter(function(item){
+          console.log(item)
+          return item.match(/oo/)
+        })
+      }
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>基本指令</title>
+  <style>
+    [v-clock] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  v-clock: 解决初始化慢导致页面闪动 <br>
+  <p v-clock>{{ msg }}</p>  <hr>
+  v-once: 定义它的元素和组件只渲染一次，后续都不会再重新渲染  <br>
+  <p v-once>{{ oncedate }}</p>
+</div>
+
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello',
+      oncedate: 'oncedate'
+    }
+  })
+</script>
+</body>
+</html>
