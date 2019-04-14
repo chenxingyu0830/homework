@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  v-model的用法: <br>
+  <hr>
+  input和textarea的用法:  <br>
+  <input type="text" v-model="value" /> <br>
+  {{ value }}
+  <br>
+  <textarea name="" id="" cols="30" rows="10" v-model="msg">我是多行文本的初始化值</textarea>
+  <br>
+  {{msg}}
+  <hr>
+  单选框: <br>
+  单个单选框: <input type="radio" v-bind:checked="oneradio">  <br>
+  多个单选框:
+  苹果：<input type="radio" name="checks" value="苹果" v-model="checkname">
+  香蕉：<input type="radio" name="checks" value="香蕉" v-model="checkname">
+  橘子：<input type="radio" name="checks" value="橘子" v-model="checkname">
+  <hr>
+  复选框:
+  单个复选框--用v-bind: <input type="checkbox" v-bind:checked="oneradio">
+  单个复选框--用v-model: <input type="checkbox" v-model="oneradio">
+  <hr>
+  单选的下拉框:
+  <select v-model="selected">
+    <option value="苹果">苹果</option>
+    <option value="香蕉">香蕉</option>
+    <option value="橘子">橘子</option>
+  </select>
+  现在选中的是 {{selected}} <br><br><br><br>
+  <hr>
+  多选的下拉框:
+  <select v-model="selectedMul" multiple>
+    <option value="苹果">苹果</option>
+    <option value="香蕉">香蕉</option>
+    <option value="橘子">橘子</option>
+  </select>
+  现在选中的是 {{selectedMul}}
+  <!-- 
+  如果是单选，初始化最好给定字符串，因为v­model此时绑定的是静态字符串或者布尔值
+  如果是多选，初始化最好给定一个数组
+   -->
+  <hr>
+  绑定值: <br>
+  单选按钮:
+  <input type="radio" v-model="picked" :value="value"> ----{{picked}}
+  <hr>
+  复选框: ---选中和不选择的value不一样
+  <input type="checkbox" v-model="toggle" :true-value="value1" :false-value="value2"> <br>
+  {{toggle}}  <br>
+  被选中: {{ toggle === value1 }} <br>
+  未被选中: {{ toggle === value2 }}
+  <hr>
+  下拉框: 
+  <select v-model="valueselect" >
+      <option :value="{num:111}">苹果</option>
+      <option value="香蕉">香蕉</option>
+      <option value="橘子">橘子</option>
+  </select>
+  现在选中的是 {{typeof valueselect}}   ------ {{valueselect}}
+  <hr>
+  修饰符: <br>
+  lazy: <br>
+  <input type="text" v-model="inputStr">  ---- {{inputStr}} <br>
+  <!-- v-model.lazy -----lazy在敲回车或者失去焦点时才更新 -->
+  <input type="text" v-model.lazy="lazyStr">  ---- {{lazyStr}} <br>
+  
+  number:<br>
+  <input type="text" v-model="isNum"> ---- {{typeof isNum}} <br>
+  <!-- v-model.number -----将输入的字符串转化为number类型 -->
+  <input type="text" v-model.number="isNum"> ---- {{typeof isNum}} <br>
+
+  trim: <br>
+  <input type="text" v-model="trimStr1"> ---- {{trimStr1.split('').length}} <br>
+  <!-- v-model.trim ----自动过滤输入过程中输入的空格 -->
+  <input type="text" v-model.trim="trimStr2"> ---- {{trimStr2.split('').length}} <br>
+
+</div>
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data:{
+      value:'',
+      msg: '',
+      oneradio: true,
+      checkname: '香蕉',
+      selected: '',
+      selectedMul: '',
+      picked: true,
+      value: '111',
+      toggle: true,
+      value1: '我被选中了',
+      value2: '我没有被选中',
+      valueselect: '',
+      inputStr: '',
+      lazyStr: '',
+      isNum:'',
+      trimStr1:'',
+      trimStr2:''
+    }
+  })
+</script>
+</body>
+</html>
