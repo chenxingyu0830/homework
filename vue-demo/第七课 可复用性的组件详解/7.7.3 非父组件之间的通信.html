@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>非父组件之间的通信</title>
+  <style>
+    #app{
+      border: 2px solid black;
+      width: 600px;
+      height: 300px;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 3px;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <a-component ref="a"></a-component>
+  <b-component ref="b"></b-component>
+  <hr>
+  <child-component ref="c"></child-component> --- {{msg}}<br>
+  <button @click="getChildData">我是父组件的按钮，我要拿到子组件的内容</button>
+  ------- {{formchild}}
+</div>
+	
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+<script>
+  let eventHub = new Vue()
+  Vue.prototype.$eventHub = eventHub
+	//需求: 通过加号按钮和减号按钮来给父组件传递数据
+  Vue.component('a-component',{
+		template: '<div><button @click="handle">点击我向B组件传递数据</div>',
+    data: function(){
+      return {
+        aaa: '我是来自a组件的内容',
+        msg: '我是A中的msg'
+      }
+    },
+    methods:{
+      handle: function(){
+        // this.$root.bus.$emit('lala', this.aaa)
+        this.$eventHub.$emit('lala', this.aaa)
+      }
+    }
+	})
+  Vue.component('b-component',{
+		template: '<div></div>',
+    data: function(){
+      return {
+        msg: '我是B中的msg'
+      }
+    },
+    created: function(){
+      //A组件在实例创建的时候就监听事件---lala事件
+      // this.$root.bus.$on('lala',function (value){
+      //   alert(value)
+      // })
+      this.$eventHub.$on('lala',function(value){
+        alert(value)
+      })
+    }
+	})
+  Vue.component('child-component',{
+		template: '<button @click="setFatherData">通过点击我修改父亲的数组</button>',
+    data: function(){
+      return {
+        msg: '我是Cs中的msg'
+      }
+    },
+    methods:{
+      setFatherData: function(){
+        this.$parent.msg = '数据已经修改了'
+      }
+    }
+	})
+
+	var app = new Vue({
+		el: '#app',
+		data:{
+      // //bus中介
+      // bus: new Vue(),
+      msg: '数据还未修改',
+      formchild: '还未拿到'
+		},
+    methods: {
+      getChildData: function(){
+        //用来拿子组件中的内容  --- $refs
+        this.formchild = this.$refs.b.msg
+      }
+    }
+	})
+</script>
+</body>
+</html>

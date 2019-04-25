@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>在组件中使用v-model</title>
+  <style>
+    #app{
+      border: 2px solid black;
+      width: 600px;
+      height: 300px;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 3px;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <my-component>
+      <p>我是父组件插入的内容</p>
+  </my-component>
+  <!-- 如果子组件中不写内容，就会显示子组件中插槽的内容 -->
+  <my-component></my-component>
+  <!-- 具名插槽 -->
+  <name-component>
+    <h3 slot="header">我是标题</h3>
+    <p>我是正文内容</p>
+    <p>正文内容有两段</p>
+    <p slot="footer">我是底部信息</p>
+  </name-component>
+</div>
+
+	
+<script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+<script>
+  Vue.component('my-component',{
+    template: '<div>\
+                 <slot>\
+                   如果父组件没有插入内容，我就作为默认出现\
+                 </slot>\
+               </div>',
+    data: function() {
+      return {
+        message: '我是子组件内容',
+      }
+    }
+  })
+  Vue.component('name-component',{
+    template: '<div>\
+                 <slot name="header">\
+                   如果父组件没有插入内容，我就作为默认出现\
+                 </slot>\
+                 <slot>\
+                   如果父组件没有插入内容，我就作为默认出现\
+                 </slot>\
+                 <slot name="footer">\
+                   如果父组件没有插入内容，我就作为默认出现\
+                 </slot>\
+               </div>',
+    data: function() {
+      return {
+        message: '我是子组件内容',
+      }
+    }
+  })
+	var app = new Vue({
+		el: '#app',
+		data:{
+      message: '我是父组件内容',
+		}
+	})
+</script>
+</body>
+</html>

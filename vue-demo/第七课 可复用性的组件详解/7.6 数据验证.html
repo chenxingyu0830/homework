@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>数据验证</title>
+</head>
+<body>
+<div id="app" style="border: 2px solid green; height: 200px; text-align:center">
+  <my-component my-msg="鸡你太美"></my-component>
+	<type-component :a="a" :b="b" :c="c" :d="d" :e="e" :f="f"></type-component>
+</div>
+	
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+	//将传递进来的数据作为初始值进行接收
+	//注册组件
+  Vue.component('my-component',{
+		props: ['myMsg'],
+		template: '<div>hello{{myMsg}}</div>'
+	})
+  Vue.component('type-component',{
+		props: {
+			a: Number,
+      b: [Number, String],
+      //必须是布尔类型，默认值是true,type--required--default
+      c: {
+        type: Boolean,
+        default: true
+      },
+      d: {
+        type: String,
+        required: true
+      },
+      e: {
+        type: Array,
+        default: function(){
+          return [666]
+        }
+      },
+      //自定义验证函数
+      f: {
+        vaildator: function(value){
+          return value<10
+        }
+      }
+		},
+		template: '<div>{{a}}--{{b}}--{{c}}--{{d}}--{{e[0]}}--{{f}}</div>'
+	})
+	var app = new Vue({
+		el: '#app',
+		data:{
+      a: '123',
+      b: '666',
+      c: true,
+      d: 'aaa',
+      e:['e'],
+      f: 88
+		}
+	})
+</script>
+</body>
+</html>
