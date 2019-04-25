@@ -11,6 +11,6 @@ app.get('/frank', function (req,res){
 })
 app.use('/static', express.static(__dirname + '/public'));
 
-app.listen(9999, function () {
+app.listen(process.env.PORT || 9999, function () {
   console.log('Example app listening on port 9999!');
 });
