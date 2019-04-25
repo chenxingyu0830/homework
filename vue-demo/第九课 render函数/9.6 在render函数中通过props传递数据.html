@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+<div id="app">
+	<button @click="switchShow">点击切换图片</button> --- {{show}}
+  <child-component :show="show">
+
+  </child-component>
+</div>
+	
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+	Vue.component('childComponent',{
+		  props: ['show'],
+      render: function(createElement){
+				var imgsrc
+				if(this.show){
+					imgsrc = 'http://p3.pstatp.com/large/6c2a0008d4bf2b6df897'
+				}else{
+					imgsrc = 'http://n.sinaimg.cn/transform/20150203/99D6-chmifpx6683765.jpg'
+				}
+				return createElement('img',{
+					attrs:{
+						src : imgsrc
+					},
+					style: {
+						width: '300px',
+						height: '400px'
+					}
+				})
+			}
+	})
+  var app = new Vue({
+		el: '#app',
+		data: {
+			show: false
+		},
+		methods:{
+			switchShow: function(){
+				this.show = !this.show
+			}
+		}
+	})
+</script>
+</body>
+</html>

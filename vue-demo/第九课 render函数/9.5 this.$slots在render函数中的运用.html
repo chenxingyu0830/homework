@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+<div id="app">
+  <child-component>
+    <p>锄禾日当午</p>
+    <p>汗滴禾下土</p>
+    <h3 slot="header">我是标题</h3>
+    <h5 slot="footer">我是文章的最后</h5>
+  </child-component>
+</div>
+	
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+  //第三个参数 存的就是VNode 虚拟节点
+	Vue.component('childComponent',{
+    render: function(createElement){
+      debugger
+			var header = this.$slots.header
+			var main = this.$slots.default
+			var footer = this.$slots.footer
+			return createElement('div',[
+				createElement('header',header),
+				createElement('main',main),
+				createElement('footer',footer)
+
+			])
+		}
+	})
+  var app = new Vue({
+		el: '#app'
+	})
+</script>
+</body>
+</html>

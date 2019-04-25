@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+<div id="app">
+  <child-component></child-component>
+</div>
+	
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+	Vue.component('childComponent',{
+    render: function(createElement){
+			return createElement({
+				template: '<div>我是render函数的第一个参数</div>'
+			},{
+				class:{
+					foo: true,
+					fbb: false
+				},
+				style:{
+					color: 'red',
+					fontSize:'20px'
+				},
+				attrs:{
+					id: 'abc'
+				},
+				domProps:{
+					innerHTML: '<div style="color:blue">我是蓝色</div>'
+				}
+			})
+		}
+	})
+  var app = new Vue({
+		el: '#app'
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+<div id="app">
+  <child-component value="haha">
+
+  </child-component>
+
+</div>
+	
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+	Vue.component('childComponent',{
+    functional: true,
+		render: function(createElement,context){
+			return createElement('button',{
+				on:{
+					click: function(){
+						console.log(context)
+						console.log(context.parent)
+						console.log(context.props.value)
+					}
+				}
+			},'点击我学习context')
+		},
+		props:['value']
+	})
+  var app = new Vue({
+		el: '#app',
+		data: {
+			msg: '我是父组件的内容'
+		},
+
+	})
+</script>
+</body>
+</html>

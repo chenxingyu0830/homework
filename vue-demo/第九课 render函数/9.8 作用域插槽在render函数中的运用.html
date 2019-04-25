@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body>
+<div id="app">
+  <child-component>
+    <template scope="prop">
+      {{prop.text}}
+			{{prop.msg}}
+    </template>
+  </child-component>
+
+</div>
+	
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+	Vue.component('childComponent',{
+		//相当于<div><slot :text="text"><slot></div>
+		render: function(createElement){
+			return createElement('div',this.$scopedSlots.default({
+				text: '我是子组件传递过来的数据',
+				msg: 'scopetext'
+			}))
+		}
+
+	})
+  var app = new Vue({
+		el: '#app',
+		data: {
+		},
+
+	})
+</script>
+</body>
+</html>
